@@ -1,0 +1,81 @@
+.poppins-regular {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.poppins-bold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.filter-sidebar{
+    background-color: transparent;
+}
+
+
+
+
+
+.brand{
+    margin: 0px 18px;
+    border: solid 1px black;
+    padding: 5px 12px;
+}
+
+.nav-link:hover{
+    color: #0d6efd;
+}
+
+.nav-link:active{
+    color: #0d6efd;
+}
+
+.main-container{
+    margin: 40px 0px;
+    display: flex;
+    justify-content: center;
+    min-height: 800px;
+}
+
+.main-form{
+    width: 80%;
+
+}
+
+.main-form-title{
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.publish-button{
+    background-color: transparent;
+    background-color: #1B8412;
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    text-decoration: none;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 2px solid #1B8412;
+    border-radius: 50px;
+    margin-left: 15px;
+    text-align: center;
+}
+
+
+
+
+
+@media (max-width: 992px) {
+
+}
+
+@media (max-width: 758px) {
+    
+}

@@ -1,0 +1,128 @@
+.poppins-regular {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.poppins-bold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.filter-sidebar{
+    background-color: transparent;
+}
+
+.brand{
+    margin: 0px 18px;
+    border: solid 1px black;
+    padding: 5px 12px;
+}
+
+.nav-link:hover{
+    color: #0d6efd;
+}
+
+.nav-link:active{
+    color: #0d6efd;
+}
+
+.main-container{
+    margin: 40px 0px;
+    width: 80%;
+    min-height: 800px;
+
+}
+
+.sender{
+    display: grid;
+    align-items: center;
+    column-gap: 30px;
+    grid-template-columns: 100px 1fr;
+}
+
+.sender-name{
+    font-size: 30px;
+    text-decoration: none;
+    color: rgb(54, 54, 54);
+}
+
+.sender-image{
+    width: 100px;
+    border-radius: 100px;
+}
+
+.goback{
+    background-color: transparent;
+    color: #1B8412;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-decoration: none;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 2px solid #1B8412;
+    border-radius: 50px;
+    text-align: center;
+    margin-top: 20px;
+    margin-left: 15px;
+}
+
+.save{
+    background-color: transparent;
+    background-color: #1B8412;
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    text-decoration: none;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 2px solid #1B8412;
+    border-radius: 50px;
+    margin-left: 15px;
+    text-align: center;
+    margin-top: 20px;
+    width: 200px;
+}
+
+.action{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+
+@media (max-width: 758px) {
+
+    .message h6{
+        display: none;
+    }
+
+    .message{
+        grid-template-columns: 70px 1fr;
+    }
+
+    .main-container{
+        width: 100%;
+    }
+
+    .goback{
+        width: 100%;
+    }
+
+    .confirm{
+        width: 100%;
+    }
+
+    .action{
+        flex-direction: column;
+        margin-top: 50px;
+    }
+}

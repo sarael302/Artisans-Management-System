@@ -1,0 +1,118 @@
+{% extends 'wrapper.html' %}
+
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'styles/home.css' %}"> 
+    <div class="container">
+        
+        <div class="main-container">
+          <aside class="filter-sidebar">
+            <h3>Filter</h3>
+            <form action="{% url 'filter' %}" method="post">
+              {% csrf_token %}
+              <label for="country" class="form-label">country</label> <br>
+              <input type="text" id="country" style="margin-bottom: 15px; width: 80%;" class="form-control" name="country" >
+              
+              <label for="city" class="form-label">city</label> <br>
+              <input type="text" id="city" style="margin-bottom: 15px; width: 80%;" class="form-control" name="city">
+
+
+              <input type="submit" value="Filter" class="filter-button bg-dark">
+
+            </form>
+          </aside>
+            <main>
+
+             
+              <h6 class="search-results-tag">Search results ({{profiles_count}})</h6>
+              <hr>
+              
+              {% if profiles %}
+                {% for profile in profiles %}
+                  <section class="profile-section">
+                    <img src="{{profile.profile_image.url}}" alt="profile-image" class="profile-photo">
+                    <div class="profile-section-data">
+                      <h6 class="profile-title">
+                        <div class="poppins-regular">{{profile.name}} <span style="color: #8e8e8e; font-size: 17px; font-weight: 100;"> | </span> <a href="">{{profile.country}}</a> </div>
+                        <!-- <div class="poppins-regular">4.5/5  ( 43 ratings )</div> -->
+                      </h6>
+                      <h3 class="profile-job"><a href="{% url 'profile' profile.id %}">{{profile.expertise}}</a></h3>
+                      <p class="profile-about">{{profile.about_me}}</p>
+                      
+                      <div class="profile-links">
+                        <a href="{% url 'profile' profile.id %}" class="profile-link-view-profile">View profile</a>
+                        <a href="{% url 'book-profile' profile.id %}" class="profile-link-send-message">Book now</a>
+                      </div>
+                    
+                    </div>
+                  </section>
+                  <hr>
+                {% endfor %}  
+              {% else %}
+                <h1>No results</h1>
+
+              {% endif %}
+
+            </main>
+        </div>
+
+
+        
+
+
+
+
+
+
+
+<div class="container">
+  <footer class="py-5">
+    <div class="row">
+      <div class="col-6 col-md-2 mb-3">
+        <h5>Social media</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Instagram</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Youtube</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Discord</a></li>
+
+        </ul>
+      </div>
+
+      <div class="col-6 col-md-2 mb-3">
+        <h5>Legal</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About us</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Terms & Conditions</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <div class="col-6 col-md-2 mb-3">
+        <h5>Contact us</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">contact@blackrich.io</a></li>
+        </ul>
+      </div>
+
+      <div class="col-md-5 offset-md-1 mb-3">
+        <form>
+          <h5>Subscribe to our newsletter</h5>
+          <p>Monthly digest of what's new and exciting from us.</p>
+          <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+            <label for="newsletter1" class="visually-hidden">Email address</label>
+            <input id="newsletter1" type="email" class="form-control" placeholder="Email address" required>
+            <input class="btn btn-dark" type="submit" value="Subscribe">
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+      <p>&copy; 2024 Blackrich.io  &#x2022; All rights reserved.</p>
+    </div>
+  </footer>
+</div>
+
+    </div>
+{% endblock content %}

@@ -1,0 +1,57 @@
+
+{% extends 'wrapper.html' %}
+{% load static %}
+
+{% block content %}
+  <title>Settings | Blackrich.io</title>
+  <link rel="stylesheet" href="{% static 'styles/settings.css' %}">
+    <div class="container">
+      <div class="main-container" >        
+        {% if success_message %}
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <!-- You applied to <strong><a href="" class="text-success">J.Sweeter</a></strong> job post -->
+            Settings Changes saved successfully
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          {% endif %}
+            <h1 class="poppins-regular" style="margin-bottom: 50px;">Settings</h1>
+
+            <form action="" method="post" enctype="multipart/form-data" >
+              {% csrf_token %}
+
+              {{profile_form.as_p}}
+
+              <div class="action">
+                  <input type="submit" class="save" value="Save changes">
+              </div>
+            </form>
+
+<!-- 
+            <h2 style="margin-bottom: 50px;" class="poppins-regular">Change password</h2>
+
+            <form action="" method="post">
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Current password</span>
+                    <input type="text" class="form-control" placeholder="Current password" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">New password</span>
+                    <input type="text" class="form-control" placeholder="New password" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Confirm New password</span>
+                    <input type="text" class="form-control" placeholder="Confirm New password" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+
+                <div class="action">
+                    <input type="submit" class="save" value="Change password">
+                </div>
+            </form> -->
+        </div>
+
+      </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,13 @@
+.brand{
+    margin: 0px 18px;
+    border: solid 1px black;
+    padding: 5px 12px;
+}
+
+.nav-link:hover{
+    color: #0d6efd;
+}
+
+.nav-link:active{
+    color: #0d6efd;
+}

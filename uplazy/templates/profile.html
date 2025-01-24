@@ -1,0 +1,161 @@
+{% extends 'wrapper.html' %}
+{% load static %}
+
+{% block content %}
+    <title>Home | Blackrich.io</title>
+  <link rel="stylesheet" href="{% static 'styles/profile.css' %}">
+    <div class="container">
+        <div class="main-container">
+            
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Share this link</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <input class="form-control" type="text" id="myInput" value="http://127.0.0.1{% url 'profile' profile.id %}" aria-label="Disabled input example"  readonly>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+      {% if success_message %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <!-- You applied to <strong><a href="" class="text-success">J.Sweeter</a></strong> job post -->
+       {{success_message}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+      {% endif %}
+
+      {% if success_message %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <!-- You applied to <strong><a href="" class="text-success">J.Sweeter</a></strong> job post -->
+       {{success_message}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+      {% endif %}
+
+            <section class="profile-details">
+                <img src="{{profile.profile_image.url}}" alt="profile-image" class="profile-photo">
+                <div class="profile-details-info">
+                    <div>
+                        <div class="profile-name-aligner">
+                            <h1 class="profile-name poppins-bold">{{profile.name}}</h1><p class="profile-seprator">|</p><h3 class="profile-username">@{{profile.user.username}}</h3>
+                        </div>
+                        <!-- <h5 class="profile-rating poppins-regular">4.5/5 ( 46 reviews )</h5> -->
+                        <h5 class="profile-hourly-rate">MAD {{profile.hourly_rate}} /hour</h5>
+                    </div>
+                  
+                   {% if profile.expertise %}
+                   <h3 class="profile-job">{{profile.expertise}}</h3>
+                   {% endif %}
+                </div>
+                <div class="profile-buttons">
+                    
+                  {% if request.user.profile.id == profile.id %}
+                    <a href="{% url 'settings' %}" class="send-message">Edit profile</a>
+                  {% else %}
+                    <a href="{% url 'book-profile' profile.id %}" class="send-message">Book now</a>
+                  {% endif %}
+
+
+                    <button type="button" class="share" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Share profile
+                    </button>
+                </div>
+            </section>
+            <hr>
+
+            <section class="profile-about-section">
+                <h2>About</h2>
+                <p>{{profile.about_me}}</p>
+            </section>
+
+            <section class="profile-reviews-section">
+                <h2 class="poppins-regular">Reviews</h2>
+                {% if can_review %}
+                  <form action="" method="post">
+                    {% csrf_token %}
+                      <div class="review-post">
+                          <input type="text" placeholder="write review here" class="form-control review-entry" name="review">
+                          <input type="submit" value="+ Add review" class="add-review send-message">
+                      </div>
+                  </form>
+                {% endif %}
+
+                {% for review in reviews %}
+                <div class="profile-review-section">
+                    <img src="{{review.reviewer.profile_photo.url}}" alt="" class="reviewer-picture">
+                    <div>
+                        <a href="{% url 'profile' review.reviewer.id %}"><h5>{{review.reviewer.name}}</h5></a>
+                         <p>{{review.content}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+                
+
+            </section>
+
+        </div>
+
+
+
+<div class="container">
+  <footer class="py-5">
+    <div class="row">
+      <div class="col-6 col-md-2 mb-3">
+        <h5>Social media</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Instagram</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Youtube</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Discord</a></li>
+
+        </ul>
+      </div>
+
+      <div class="col-6 col-md-2 mb-3">
+        <h5>Legal</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About us</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Terms & Conditions</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <div class="col-6 col-md-2 mb-3">
+        <h5>Contact us</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">contact@blackrich.io</a></li>
+        </ul>
+      </div>
+
+      
+    </div>
+
+    <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+      <p>&copy; 2024 MonArtisan  &#x2022; All rights reserved.</p>
+    </div>
+  </footer>
+</div>
+
+    </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const inputField = document.getElementById('myInput');
+
+            inputField.addEventListener('click', () => {
+                inputField.select();
+            });
+        });
+    </script>
+{% endblock %}
